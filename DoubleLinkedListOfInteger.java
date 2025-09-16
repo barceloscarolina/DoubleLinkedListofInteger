@@ -283,9 +283,9 @@ public class DoubleLinkedListOfInteger {
 
         Integer[] aux_array_list = new Integer[size];
 
-        for (int i = 0; i < size; i++) {
+        Node aux = header.next;
 
-            Node aux = header.next;
+        for (int i = 0; i < size; i++) {
 
             aux_array_list[i] = aux.element;
 
