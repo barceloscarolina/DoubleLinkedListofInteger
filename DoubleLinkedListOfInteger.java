@@ -141,4 +141,29 @@ public class DoubleLinkedListOfInteger {
 
     }
 
+    public boolean remove(Integer element) {
+
+        Node aux = header.next;
+
+        for (int i = 0; i < count; i++) {
+
+            if (aux.element.equals(element)) {
+
+                aux.prev.next = aux.next;
+                aux.next.prev = aux.prev;
+
+                count--;
+
+                return true;
+
+            }
+
+            aux = aux.next;
+
+        }
+
+        return false;
+
+    }
+
 }
