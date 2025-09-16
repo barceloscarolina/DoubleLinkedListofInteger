@@ -10,11 +10,19 @@ public class main {
 
         // Integer remover = 2;
 
-        System.out.println(lista.remove(2));
+        System.out.println(lista.toString());
 
-        System.out.println(lista.toStringBacktoFront());
+        Integer[] sub = lista.subList(3, 8);
 
-        System.out.println(lista.size());
+        // System.out.println(sub[4]);
+
+        // System.out.println(lista.toString());
+
+        for (int i = 0; i < sub.length; i++) {
+
+            System.out.println(sub[i]);
+
+        }
 
     }
 

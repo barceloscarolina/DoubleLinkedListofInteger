@@ -64,9 +64,12 @@ public class DoubleLinkedListOfInteger {
 
         for (int i = 0; i < count; i++) {
 
-            if (aux.element.equals(element))
-                ;
-            return true;
+            if (aux.element.equals(element)) {
+
+                return true;
+            }
+
+            aux = aux.next;
 
         }
 
@@ -115,9 +118,12 @@ public class DoubleLinkedListOfInteger {
 
         for (int i = 0; i < count; i++) {
 
-            if (aux.element.equals(element))
-                ;
-            return i;
+            if (aux.element.equals(element)) {
+
+                return i;
+            }
+
+            aux = aux.next;
 
         }
 
@@ -163,6 +169,131 @@ public class DoubleLinkedListOfInteger {
         }
 
         return false;
+
+    }
+
+    private Node getNodeIndex(int index) {
+        Node aux = null;
+
+        if (index < count / 2) {
+            aux = header.next;
+            for (int i = 0; i < index; i++) {
+                aux = aux.next;
+            }
+        } else {
+            aux = trailer.prev;
+            for (int i = count - 1; i > index; i--) {
+                aux = aux.prev;
+            }
+        }
+
+        return aux;
+
+    }
+
+    public void add(int index, Integer element) {
+
+        if (index > count || index < 0) {
+
+            throw new IndexOutOfBoundsException("Erro" + index);
+
+        }
+
+        if (index == count) {
+            add(element);
+        } else {
+
+            Node aux = getNodeIndex(index);
+
+            Node newNode = new Node(element);
+
+            aux.prev.next = newNode;
+            newNode.prev = aux.prev;
+
+            newNode.next = aux;
+            aux.prev = newNode;
+
+            count++;
+
+        }
+
+    }
+
+    public Integer get(int index) {
+
+        if (index > count || index < 0) {
+
+            throw new IndexOutOfBoundsException("Erro" + index);
+
+        }
+
+        Node aux = getNodeIndex(index);
+
+        return aux.element;
+
+    }
+
+    public Integer set(int index, Integer element) {
+
+        if (index > count || index < 0) {
+
+            throw new IndexOutOfBoundsException("Erro" + index);
+
+        }
+
+        Node aux = getNodeIndex(index);
+
+        Integer old_element = aux.element;
+
+        aux.element = element;
+
+        return old_element;
+    }
+
+    public Integer removeByIndex(int index) {
+
+        if (index > count || index < 0) {
+
+            throw new IndexOutOfBoundsException("Erro" + index);
+
+        }
+
+        Node aux = getNodeIndex(index);
+
+        Integer old_element = aux.element;
+
+        aux.prev.next = aux.next;
+        aux.next.prev = aux.prev;
+
+        count--;
+
+        return old_element;
+
+    }
+
+    public Integer[] subList(int fromIndex, int toIndex) {
+
+        if (fromIndex > count || fromIndex < 0 || toIndex > count || toIndex < 0 || fromIndex > toIndex) {
+
+            throw new IndexOutOfBoundsException("Erro" + fromIndex + toIndex);
+
+        }
+
+        int size = toIndex - fromIndex + 1;
+
+        Integer[] aux_array_list = new Integer[size];
+
+        for (int i = 0; i < size; i++) {
+
+            Node aux = header.next;
+
+            aux_array_list[i] = aux.element;
+
+            aux = aux.next;
+
+        }
+
+        return aux_array_list;
 
     }
 
