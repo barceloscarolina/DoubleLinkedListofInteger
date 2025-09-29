@@ -48,8 +48,8 @@ public class DoubleLinkedListOfInteger {
 
     public void clear() {
 
-        this.header = new Node(null);
-        this.trailer = new Node(null);
+        header = new Node(null);
+        trailer = new Node(null);
 
         header.next = trailer;
         trailer.prev = header;
@@ -135,12 +135,11 @@ public class DoubleLinkedListOfInteger {
 
         Node n = new Node(element);
 
-        trailer.prev.next = n;
-
         n.prev = trailer.prev;
 
         n.next = trailer;
 
+        trailer.prev.next = n;
         trailer.prev = n;
 
         count++;
@@ -200,10 +199,10 @@ public class DoubleLinkedListOfInteger {
         }
 
         if (index == count) {
-            add(element);
+            this.add(element);
         } else {
 
-            Node aux = getNodeIndex(index);
+            Node aux = this.getNodeIndex(index);
 
             Node newNode = new Node(element);
 
@@ -221,7 +220,7 @@ public class DoubleLinkedListOfInteger {
 
     public Integer get(int index) {
 
-        if (index > count || index < 0) {
+        if (index >= count || index < 0) {
 
             throw new IndexOutOfBoundsException("Erro" + index);
 
@@ -235,7 +234,7 @@ public class DoubleLinkedListOfInteger {
 
     public Integer set(int index, Integer element) {
 
-        if (index > count || index < 0) {
+        if (index >= count || index < 0) {
 
             throw new IndexOutOfBoundsException("Erro" + index);
 
@@ -252,7 +251,7 @@ public class DoubleLinkedListOfInteger {
 
     public Integer removeByIndex(int index) {
 
-        if (index > count || index < 0) {
+        if (index >= count || index < 0) {
 
             throw new IndexOutOfBoundsException("Erro" + index);
 
